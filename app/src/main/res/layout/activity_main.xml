@@ -67,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/lavender"
+                android:onClick="Login"
                 android:text="Đăng nhập"
                 android:textSize="18dp"
                 app:cornerRadius="20dp" />
