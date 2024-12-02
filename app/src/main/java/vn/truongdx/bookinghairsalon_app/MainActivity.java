@@ -55,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         //trường hợp rỗng
         if (tendnInput.isEmpty() || mkInput.isEmpty()) {
-            tendn.setError("Vui lòng nhập tên đăng nhập");
-            mathkhau.setError("Vui lòng nhập mật khẩu");
+            Toast.makeText(MainActivity.this, "Tên đăng nhập hoặc mật khẩu không được để trống", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -79,15 +78,15 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(iPageHome);
                             Toast.makeText(MainActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             finish();
-                            break;
+                            loginsuccess = true;
+                            break; //thoát vòng lặp khi dn thành công
                         } catch (Exception e) {
                             e.printStackTrace();
                             Toast.makeText(MainActivity.this, "Có lỗi xảy ra khi chuyển trang", Toast.LENGTH_SHORT).show();
                         }
-                        break;
-                    } else {
-                        Toast.makeText(MainActivity.this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
-                        break;
+                        if (!loginsuccess){
+                            Toast.makeText(MainActivity.this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
