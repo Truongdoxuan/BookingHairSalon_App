@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "399302039980",
+    "project_id": "bookinghairsalon-app",
+    "storage_bucket": "bookinghairsalon-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399302039980:android:445b9d2bcb64d5089dc209",
+        "android_client_info": {
+          "package_name": "vn.truongdx.bookinghairsalon_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAivst4-hivGd54cFocXUFclrJK2NdYYw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
