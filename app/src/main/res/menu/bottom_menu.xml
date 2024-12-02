@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <item
+        android:id="@+id/bmenu_home"
+        android:title="Trang chủ"
+        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/bmenu_menusalon"
+        android:title="Bảng giá dịch vụ"
+        android:icon="@drawable/ic_menu"/>
+    <item
+        android:id="@+id/bmenu_booking"
+        android:title="Đặt lịch hẹn"
+        android:icon="@drawable/ic_calendar"/>
+    <item
+        android:id="@+id/bmenu_status"
+        android:title="Tình trạng ghế"
+        android:icon="@drawable/ic_chair"/>
+    <item
+        android:id="@+id/bmenu_account"
+        android:title="Tài khoản"
+        android:icon="@drawable/ic_nguoi"/>
 </menu>
