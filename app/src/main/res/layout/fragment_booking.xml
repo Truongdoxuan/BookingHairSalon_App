@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.Booking_Fragment"
-    android:padding="16dp">
+    android:padding="30dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -78,17 +78,13 @@
             android:textStyle="bold"
             android:textColor="@color/black" />
 
-        <Button
-            android:id="@+id/tv_selected_date"
+        <EditText
+            android:id="@+id/btn_selectDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
             android:hint="Nhấn để chọn ngày"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_marginBottom="12dp"
-            android:gravity="center_vertical"
-            android:backgroundTint="@color/purple_200"/>
+            android:layout_marginBottom="12dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -98,15 +94,14 @@
             android:textStyle="bold"
             android:textColor="@color/black" />
 
-        <Button
-            android:id="@+id/tv_selected_time"
+        <EditText
+            android:id="@+id/btn_selectTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
             android:hint="Nhấn để chọn giờ"
             android:layout_marginBottom="16dp"
-            android:gravity="center_vertical"
-            android:backgroundTint="@color/purple_200"/>
+            android:gravity="center_vertical" />
 
         <TextView
             android:layout_width="match_parent"
@@ -127,7 +122,7 @@
             android:gravity="top" />
 
         <Button
-            android:id="@+id/btn_confirm_booking"
+            android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Xác nhận đặt lịch"
@@ -142,7 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Làm mới"
-            android:backgroundTint="@color/lavender"
+            android:backgroundTint="@color/gray"
             android:textColor="@color/white"
             android:padding="12dp"
             android:textStyle="bold"
