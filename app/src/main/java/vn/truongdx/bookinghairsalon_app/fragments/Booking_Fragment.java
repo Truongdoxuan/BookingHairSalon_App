@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import vn.truongdx.bookinghairsalon_app.R;
 
 public class Booking_Fragment extends Fragment {
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

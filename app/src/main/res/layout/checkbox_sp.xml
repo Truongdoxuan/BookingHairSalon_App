@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tạo kiểu tóc"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="8dp">
+
+                <CheckBox
+                    android:id="@+id/cb_cat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cắt" />
+
+                <CheckBox
+                    android:id="@+id/cb_uon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Uốn" />
+
+                <CheckBox
+                    android:id="@+id/cb_nhuom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nhuộm" />
+
+                <CheckBox
+                    android:id="@+id/cb_duoi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Duỗi" />
+
+                <CheckBox
+                    android:id="@+id/cb_phuchoi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phục hồi tóc" />
+            </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gội đầu"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp">
+
+            <CheckBox
+                android:id="@+id/cb_goidauthg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gội đầu thường" />
+
+            <CheckBox
+                android:id="@+id/cb_goidauds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gội đầu dưỡng sinh" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trang điểm"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp">
+
+            <CheckBox
+                android:id="@+id/cb_makeup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Make up đi tiệc" />
+
+            <CheckBox
+                android:id="@+id/cb_noimi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nối mi" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dịch vụ khác"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp">
+
+            <CheckBox
+                android:id="@+id/cb_laymun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lấy nhân mụn" />
+
+            <CheckBox
+                android:id="@+id/cb_nail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Làm móng" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_selectAll"
+            android:text="Chọn tất cả"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_cancel"
+            android:text="Hủy"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/gray"/>
+    </LinearLayout>
+</ScrollView>

@@ -64,11 +64,12 @@
             android:textStyle="bold"
             android:textColor="@color/black" />
 
-        <Spinner
-            android:id="@+id/spinner_services"
+        <Button
+            android:id="@+id/btn_select_dv"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginBottom="12dp" />
+            android:layout_height="wrap_content"
+            android:text="Chọn dịch vụ"
+            android:layout_marginBottom="16dp" />
 
         <TextView
             android:layout_width="match_parent"
