@@ -1,149 +1,109 @@
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Booking_Fragment"
-    android:padding="30dp">
+    tools:context=".fragments.Booking_Fragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đặt lịch hẹn"
-            android:textSize="24sp"
-            android:textColor="@color/black"
             android:layout_gravity="center_horizontal"
             android:paddingBottom="16dp"
+            android:text="Đặt lịch hẹn"
+            android:textColor="@color/black"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Họ và tên"
+            android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txt_tenKH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhập họ và tên"
-            android:padding="12dp"
             android:layout_marginBottom="12dp"
-            android:inputType="textPersonName" />
+            android:hint="Nhập họ và tên"
+            android:inputType="textPersonName"
+            android:padding="12dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Số điện thoại"
+            android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txt_sdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhập số điện thoại"
-            android:padding="12dp"
             android:layout_marginBottom="12dp"
-            android:inputType="phone" />
+            android:hint="Nhập số điện thoại"
+            android:inputType="phone"
+            android:padding="12dp" />
+    </LinearLayout>
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Chọn dịch vụ"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+    <LinearLayout
+        android:id="@+id/layout_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="80dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/btn_select_dv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chọn dịch vụ"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:id="@+id/txt_selected_dv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Chọn ngày"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
-
-        <EditText
-            android:id="@+id/btn_selectDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:padding="12dp"
-            android:hint="Nhấn để chọn ngày"
-            android:layout_marginBottom="12dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Chọn giờ"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
-
-        <EditText
-            android:id="@+id/btn_selectTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:hint="Nhấn để chọn giờ"
-            android:layout_marginBottom="16dp"
-            android:gravity="center_vertical" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ghi chú"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
-
-        <EditText
-            android:id="@+id/et_notes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Thêm ghi chú (tuỳ chọn)"
-            android:padding="12dp"
-            android:layout_marginBottom="16dp"
-            android:inputType="textMultiLine"
-            android:gravity="top" />
+            android:backgroundTint="@color/gray"
+            android:text="Chọn dịch vụ" />
 
         <Button
             android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Xác nhận đặt lịch"
-            android:backgroundTint="@color/lavender"
-            android:textColor="@color/white"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/red"
             android:padding="12dp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp" />
+            android:text="Xác nhận đặt lịch"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_reload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Làm mới"
+            android:layout_marginTop="8dp"
             android:backgroundTint="@color/gray"
-            android:textColor="@color/white"
             android:padding="12dp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp" />
-
+            android:text="Làm mới"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
     </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

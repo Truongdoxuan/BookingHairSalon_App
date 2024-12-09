@@ -151,7 +151,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_cancel"
-            android:text="Hủy"
+            android:text="Hủy tất cả"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/red"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_return"
+            android:text="Trở về"
             android:textSize="16dp"
             android:textStyle="bold"
             android:backgroundTint="@color/gray"/>
