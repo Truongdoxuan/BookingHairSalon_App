@@ -16,8 +16,4 @@
         android:id="@+id/bmenu_status"
         android:title="Tình trạng ghế"
         android:icon="@drawable/ic_chair"/>
-    <item
-        android:id="@+id/bmenu_account"
-        android:title="Tài khoản"
-        android:icon="@drawable/ic_nguoi"/>
 </menu>

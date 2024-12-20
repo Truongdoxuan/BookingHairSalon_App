@@ -1,6 +1,8 @@
 package vn.truongdx.bookinghairsalon_app.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -34,7 +36,6 @@ import vn.truongdx.bookinghairsalon_app.fragments.MyAccount_Fragment;
 public class Home_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,16 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+        }
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar,
+                R.string.open_nav,
+                R.string.close_nav
+        );
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -51,41 +62,40 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.bmenu_home) {
                 replaceFragment(new Home_Fragment());
+                setTitle("Trang chủ");
             } else if (item.getItemId() == R.id.bmenu_menusalon) {
                 replaceFragment(new MenuSalon_Fragment());
+                setTitle("Bảng giá dịch vụ");
             } else if (item.getItemId() == R.id.bmenu_booking) {
                 replaceFragment(new Booking_Fragment());
+                setTitle("Thông tin khách hàng đăt lịch hẹn");
             } else if (item.getItemId() == R.id.bmenu_status) {
                 replaceFragment(new ChairStatus_Fragment());
-            } else if (item.getItemId() == R.id.bmenu_account) {
-                replaceFragment(new MyAccount_Fragment());
+                setTitle("Tình trạng ghế");
             }
             return true;
         });
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
         if (savedInstanceState == null) {
             replaceFragment(new Home_Fragment());
-            navigationView.setCheckedItem(R.id.nav_home);
+            setTitle("Trang chủ");
+            navigationView.setCheckedItem(R.id.nav_account);
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.nav_home) {
+        if (item.getItemId() == R.id.nav_account) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Home_Fragment()).commit();
+            setTitle("Tài khoản");
         } else if (item.getItemId() == R.id.nav_contact) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Contact_Fragment()).commit();
+            setTitle("Liên hệ với cửa hàng");
         } else if (item.getItemId() == R.id.nav_map) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Map_Fragment()).commit();
+            setTitle("Bản đồ");
         } else if (item.getItemId() == R.id.it_logout) {
-            //chuyển về trang đăng nhập
-            Intent iPageLogin = new Intent(Home_Activity.this, MainActivity.class);
-            startActivity(iPageLogin);
-            finish();
+            showAlert_Logout();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -96,5 +106,27 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
+    }
+    private void showAlert_Logout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Bạn có chắc muốn đăng xuất")
+                .setCancelable(false)
+                .setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //chuyển về trang đăng nhập
+                        Intent iPageLogin = new Intent(Home_Activity.this, MainActivity.class);
+                        startActivity(iPageLogin);
+                        finish();
+                    }
+                })
+                .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+        AlertDialog alertLogOut = builder.create();
+        alertLogOut.show();
     }
 }

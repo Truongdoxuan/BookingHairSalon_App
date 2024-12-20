@@ -6,9 +6,7 @@
     android:orientation="vertical"
     android:gravity="bottom"
     android:padding="16dp"
-    android:background="@drawable/bg_purple"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
+    android:background="@drawable/bg_purple">
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
