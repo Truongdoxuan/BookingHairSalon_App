@@ -40,6 +40,7 @@
                 android:layout_weight="1">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_tenKH"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nhập tên khách hàng" />
@@ -54,7 +55,7 @@
             android:gravity="center_vertical">
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/rd_women"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.55"
@@ -75,37 +76,11 @@
                 android:layout_weight="1">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_sdtKH"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:hint="Số điện thoại"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Địa chỉ"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nhập địa chỉ" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -127,6 +102,7 @@
             android:padding="10dp"
             android:orientation="horizontal">
             <Button
+                android:id="@+id/btn_today"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_marginRight="5dp"
@@ -135,6 +111,7 @@
                 android:textSize="11sp"/>
 
             <Button
+                android:id="@+id/btn_tomorrow"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_marginRight="5dp"
@@ -142,6 +119,7 @@
                 android:text="Ngày mai"
                 android:textSize="11sp"/>
             <Button
+                android:id="@+id/btn_nextday"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_marginRight="5dp"
@@ -150,6 +128,7 @@
                 android:textSize="11sp"/>
 
             <Button
+                android:id="@+id/otherday"
                 android:layout_width="80dp"
                 android:layout_height="75dp"
                 android:background="@drawable/format_button_day"
@@ -181,6 +160,33 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Ghi chú (cho nhân viên)"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_noteKH"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập ghi chú (nếu cần)" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/layout_buttons"
             android:layout_width="match_parent"
