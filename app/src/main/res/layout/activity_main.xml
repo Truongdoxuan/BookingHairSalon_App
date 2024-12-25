@@ -71,6 +71,13 @@
                 android:text="Đăng nhập"
                 android:textSize="18dp"
                 app:cornerRadius="20dp" />
+
+<!--            <ProgressBar-->
+<!--                android:id="@+id/progress_bar"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:visibility="gone" />-->
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

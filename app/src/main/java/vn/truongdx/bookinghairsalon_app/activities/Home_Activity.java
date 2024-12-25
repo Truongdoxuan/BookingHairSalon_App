@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.concurrent.locks.ReentrantLock;
 
 import vn.truongdx.bookinghairsalon_app.MainActivity;
 import vn.truongdx.bookinghairsalon_app.R;
@@ -77,8 +80,8 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
         if (savedInstanceState == null) {
             replaceFragment(new Home_Fragment());
             setTitle("Trang chủ");
-            navigationView.setCheckedItem(R.id.nav_account);
         }
+
     }
 
     @Override
@@ -101,10 +104,15 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
 
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment currentFragment = fragmentManager.findFragmentById(R.id.fragment_container);
+        if (currentFragment != null && currentFragment.getClass().equals(fragment.getClass())) {
+            return; // Không thay thế nếu fragment hiện tại giống với fragment cần thay thế
+        }
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
     }
+
     private void showAlert_Logout() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Bạn có chắc muốn đăng xuất")
