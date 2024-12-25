@@ -2,6 +2,7 @@ package vn.truongdx.bookinghairsalon_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 import vn.truongdx.bookinghairsalon_app.activities.Home_Activity;
 import vn.truongdx.bookinghairsalon_app.utils.DatabaseConnection;
 
@@ -27,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     //khai báo biến
     EditText tendn, mathkhau;
     Button dangnhap;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,19 +76,25 @@ public class MainActivity extends AppCompatActivity {
                     //ktra trung khớp
                     if (dbtendn.equals(tendnInput) && dbmatkhau.equals(mkInput)) {
                         try {
+                            Log.d("LoginCheck", "Đăng nhập thành công. Tên đăng nhập: " + tendnInput);
                             Intent iPageHome = new Intent(MainActivity.this, Home_Activity.class);
                             startActivity(iPageHome);
                             Toast.makeText(MainActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                            Log.d("Navigation", "Chuyển sang Home_Activity");
                             finish();
                             loginsuccess = true;
                             break; //thoát vòng lặp khi dn thành công
                         } catch (Exception e) {
                             e.printStackTrace();
+                            Log.e("Error", "Lỗi xảy ra khi chuyển sang Home_Activity", e);
                             Toast.makeText(MainActivity.this, "Có lỗi xảy ra khi chuyển trang", Toast.LENGTH_SHORT).show();
                         }
-                        if (!loginsuccess){
-                            Toast.makeText(MainActivity.this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
-                        }
+                    } else {
+                        Log.d("LoginCheck", "Đăng nhập thất bại. Tên đăng nhập: " + tendnInput);
+                    }
+                    if (!loginsuccess){
+                        Log.d("LoginCheck", "Tên đăng nhập hoặc mật khẩu không đúng");
+                        Toast.makeText(MainActivity.this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
