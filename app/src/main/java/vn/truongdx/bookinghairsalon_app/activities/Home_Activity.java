@@ -1,11 +1,9 @@
 package vn.truongdx.bookinghairsalon_app.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -21,17 +19,14 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.concurrent.locks.ReentrantLock;
-
 import vn.truongdx.bookinghairsalon_app.MainActivity;
 import vn.truongdx.bookinghairsalon_app.R;
 import vn.truongdx.bookinghairsalon_app.fragments.Booking_Fragment;
-import vn.truongdx.bookinghairsalon_app.fragments.ChairStatus_Fragment;
+import vn.truongdx.bookinghairsalon_app.fragments.Account_Fragment;
 import vn.truongdx.bookinghairsalon_app.fragments.Contact_Fragment;
 import vn.truongdx.bookinghairsalon_app.fragments.Home_Fragment;
 import vn.truongdx.bookinghairsalon_app.fragments.Map_Fragment;
 import vn.truongdx.bookinghairsalon_app.fragments.MenuSalon_Fragment;
-import vn.truongdx.bookinghairsalon_app.fragments.MyAccount_Fragment;
 
 
 public class Home_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -70,9 +65,9 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
             } else if (item.getItemId() == R.id.bmenu_booking) {
                 replaceFragment(new Booking_Fragment());
                 setTitle("Thông tin khách hàng đăt lịch hẹn");
-            } else if (item.getItemId() == R.id.bmenu_status) {
-                replaceFragment(new ChairStatus_Fragment());
-                setTitle("Tình trạng ghế");
+            } else if (item.getItemId() == R.id.bmenu_account) {
+                replaceFragment(new Account_Fragment());
+                setTitle("Thông tin khách hàng");
             }
             return true;
         });

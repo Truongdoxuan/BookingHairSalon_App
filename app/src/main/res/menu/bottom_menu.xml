@@ -13,7 +13,7 @@
         android:title="Đặt lịch hẹn"
         android:icon="@drawable/ic_calendar"/>
     <item
-        android:id="@+id/bmenu_status"
+        android:id="@+id/bmenu_account"
         android:title="Tài khoản"
         android:icon="@drawable/ic_nguoi"/>
 </menu>

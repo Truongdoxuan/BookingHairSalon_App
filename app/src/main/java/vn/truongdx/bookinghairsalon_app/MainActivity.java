@@ -22,6 +22,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import vn.truongdx.bookinghairsalon_app.activities.Home_Activity;
 import vn.truongdx.bookinghairsalon_app.activities.SignUp_Activity;
 import vn.truongdx.bookinghairsalon_app.utils.DatabaseConnection;
+import vn.truongdx.bookinghairsalon_app.utils.UserSession;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -90,24 +91,26 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
-                                boolean loginSuccess = false;
                                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                                     String dbmatkhau = userSnapshot.child("mk").getValue(String.class);
+                                    String name = userSnapshot.child("ten").getValue(String.class);
+                                    String email = userSnapshot.child("email").getValue(String.class);
+                                    String role = "khachhang"; // Vai trò
+
                                     if (dbmatkhau != null && dbmatkhau.equals(mkInput)) {
-                                        // Đăng nhập thành công
+                                        // Lưu thông tin vào UserSession
+                                        UserSession userSession = new UserSession(MainActivity.this);
+                                        userSession.saveUserInfo(name, sdtInput, email, mkInput, role);
+
+                                        // Chuyển sang Home_Activity
                                         Intent iPageHome = new Intent(MainActivity.this, Home_Activity.class);
                                         startActivity(iPageHome);
-                                        Toast.makeText(MainActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                         finish();
-                                        loginSuccess = true;
-                                        break;
+                                        return;
                                     }
                                 }
-                                if (!loginSuccess) {
-                                    Toast.makeText(MainActivity.this, "Mật khẩu không đúng", Toast.LENGTH_SHORT).show();
-                                }
+                                Toast.makeText(MainActivity.this, "Mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                             } else {
-                                // Sai tên đăng nhập
                                 Toast.makeText(MainActivity.this, "Tên đăng nhập không tồn tại", Toast.LENGTH_SHORT).show();
                             }
                         }
