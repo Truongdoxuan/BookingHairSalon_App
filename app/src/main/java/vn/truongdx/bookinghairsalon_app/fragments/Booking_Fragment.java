@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,13 +24,15 @@ import java.util.Locale;
 
 import vn.truongdx.bookinghairsalon_app.MainActivity;
 import vn.truongdx.bookinghairsalon_app.R;
+import vn.truongdx.bookinghairsalon_app.models.entities.LichHen;
 
 public class Booking_Fragment extends Fragment {
     //khai báo biến
-    private Button btnchonDV;
+    private TextView tenKH, sdtKH, textTime, textDate, ghichu;
+    private RadioButton gioiTinh;
     private Button btnSetTime, btnConfirm;
     private Button btnToday, btnTomorrow, btnNextday, btnOrtherday;
-    private TextView textTime, textDate;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,7 +46,10 @@ public class Booking_Fragment extends Fragment {
         btnOrtherday = view.findViewById(R.id.btn_otherday);
         textTime = view.findViewById(R.id.txt_time);
         textDate = view.findViewById(R.id.txt_date);
-
+        tenKH = view.findViewById(R.id.txt_tenKH);
+        sdtKH = view.findViewById(R.id.txt_sdtKH);
+        gioiTinh = view.findViewById(R.id.rd_women);
+        ghichu = view.findViewById(R.id.txt_noteKH);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,44 +70,57 @@ public class Booking_Fragment extends Fragment {
             timePickerDialog.show(); //show
         });
 
-        //lấy ngày hiện taị
+        // Lấy ngày hiện tại
         Calendar lich = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        //sự kiện nút today
+
+        // Sự kiện nút hôm nay
         btnToday.setOnClickListener(v -> {
             String today = sdf.format(lich.getTime());
-            //hiển thị trên txt
             textDate.setText(today);
         });
-        //sự kiện nút ngày mai
+
+        // Sự kiện nút ngày mai
         btnTomorrow.setOnClickListener(v -> {
-            lich.add(Calendar.DAY_OF_YEAR,1); //cộng thêm 1 so với ngày hôm nay
-            String tomorrow = sdf.format(lich.getTime());
+            Calendar tomorrowCalendar = (Calendar) lich.clone();  // Tạo bản sao của lich
+            tomorrowCalendar.add(Calendar.DAY_OF_YEAR, 1); // Cộng thêm 1 ngày
+            String tomorrow = sdf.format(tomorrowCalendar.getTime());
             textDate.setText(tomorrow);
-            lich.add(Calendar.DAY_OF_YEAR,-1); //reset về lại hôm nay trong dialog
         });
-        //sự kiện nút ngày kia
+
+        // Sự kiện nút ngày kia
         btnNextday.setOnClickListener(v -> {
-            lich.add(Calendar.DAY_OF_YEAR,2); //cộng thêm 2 để lấy ngày mốt
-            String nextday = sdf.format(lich.getTime());
+            Calendar nextDayCalendar = (Calendar) lich.clone(); // Tạo bản sao của lich
+            nextDayCalendar.add(Calendar.DAY_OF_YEAR, 2); // Cộng thêm 2 ngày
+            String nextday = sdf.format(nextDayCalendar.getTime());
             textDate.setText(nextday);
-            lich.add(Calendar.DAY_OF_YEAR,-2);
         });
-        //sự kiện nút ngày khác
+
+        // Sự kiện nút ngày khác
         btnOrtherday.setOnClickListener(v -> {
-            //hiển thị date dialog
+            // Hiển thị date dialog
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     getContext(),
-                    (datePicker,year, month, day) -> {
-                        //lấy ngày được chọn từ datepicker
-                        String getDay = String.format("%02d/%02d/%d", day, month +1, year);
+                    (datePicker, year, month, day) -> {
+                        // Lấy ngày được chọn từ datepicker
+                        String getDay = String.format("%02d/%02d/%d", day, month + 1, year);  // Tháng là từ 0, nên phải cộng thêm 1
                         textDate.setText(getDay);
                     },
                     lich.get(Calendar.YEAR),
                     lich.get(Calendar.MONTH),
                     lich.get(Calendar.DAY_OF_MONTH)
             );
-            datePickerDialog.show(); //show
+
+            // Đặt ngày tối thiểu cho datepicker
+            datePickerDialog.getDatePicker().setMinDate(lich.getTimeInMillis());
+
+            // Đặt ngày tối đa cho datepicker
+            Calendar maxDateCalendar = (Calendar) lich.clone(); // Tạo bản sao của lich
+            maxDateCalendar.add(Calendar.MONTH, 2); // Set ngày tối đa là 2 tháng sau
+            long maxDate = maxDateCalendar.getTimeInMillis();
+            datePickerDialog.getDatePicker().setMaxDate(maxDate);
+
+            datePickerDialog.show(); // Hiển thị dialog
         });
         return view;
     }
@@ -113,7 +132,8 @@ public class Booking_Fragment extends Fragment {
                 .setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Action();
+
+                        sendDataToFirebase();
                     }
                 })
                 .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
@@ -125,8 +145,25 @@ public class Booking_Fragment extends Fragment {
         AlertDialog alert = builder.create();
         alert.show();
     }
-    private void Action() {
+    private void sendDataToFirebase() {
         // Xử lý hành động thực hiện sau khi xác nhận
+        String tenkh = tenKH.getText().toString();
+        String sdt = sdtKH.getText().toString();
+        String date = textDate.getText().toString();
+        String time = textTime.getText().toString();
+        String note = ghichu.getText().toString().isEmpty() ? "Không" : ghichu.getText().toString();
+        String gioitinh = gioiTinh.isChecked() ? "Nữ" : "Nam";
+
+        //kiểm tra trống dữ liệu
+        if (tenkh.isEmpty() || sdt.isEmpty() || date.isEmpty() || time.isEmpty()) {
+            Toast.makeText(getContext(), "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //tạo lichhen mới để gửi dữ liệu lên firebase
+        LichHen lichHen = new LichHen(tenkh,gioitinh,sdt,date,time,note);
+
+        //lấy instance của firebase
 
     }
 }
