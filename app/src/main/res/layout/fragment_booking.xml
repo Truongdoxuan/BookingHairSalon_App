@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="56dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="30dp"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             android:gravity="center_vertical">
 
             <TextView
@@ -58,7 +58,7 @@
                 android:id="@+id/rd_women"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.55"
+                android:layout_weight="0.52"
                 android:text="Nữ"
                 android:textStyle="bold"/>
             <TextView
@@ -89,7 +89,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="5dp"
             android:text="Ngày đặt lịch"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -100,71 +100,110 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:padding="10dp"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/btn_today"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/format_button_day"
-                android:text="Hôm nay"
-                android:textSize="11sp"/>
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btn_tomorrow"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/format_button_day"
-                android:text="Ngày mai"
-                android:textSize="11sp"/>
-            <Button
-                android:id="@+id/btn_nextday"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/format_button_day"
-                android:text="Ngày kia"
-                android:textSize="11sp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
-            <Button
-                android:id="@+id/otherday"
-                android:layout_width="80dp"
-                android:layout_height="75dp"
-                android:background="@drawable/format_button_day"
-                android:layout_marginRight="5dp"
-                android:text="Ngày khác"
-                android:textSize="11sp"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Vui lòng chọn ngày" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_today"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/format_button_day"
+                    android:text="Hôm nay"
+                    android:textSize="11sp" />
+
+                <Button
+                    android:id="@+id/btn_tomorrow"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/format_button_day"
+                    android:text="Ngày mai"
+                    android:textSize="11sp"/>
+                <Button
+                    android:id="@+id/btn_nextday"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/format_button_day"
+                    android:text="Ngày kia"
+                    android:textSize="11sp"/>
+
+                <Button
+                    android:id="@+id/btn_otherday"
+                    android:layout_width="80dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/format_button_day"
+                    android:layout_marginRight="5dp"
+                    android:text="Ngày khác"
+                    android:textSize="11sp"/>
+            </LinearLayout>
 
         </LinearLayout>
 
-
         <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
-            android:gravity="center_vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="8dp"
+            android:padding="5dp">
 
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thời gian"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextClock
-                android:id="@+id/textClock"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txt_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Vui lòng chọn thời gian" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <Button
+                    android:id="@+id/btnSetTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chọn"
+                    android:layout_marginLeft="10px"/>
+            </LinearLayout>
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -192,7 +231,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <Button
                 android:id="@+id/btn_confirmBooking"
