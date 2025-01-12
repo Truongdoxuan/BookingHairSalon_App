@@ -69,7 +69,7 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
                 setTitle("Bảng giá dịch vụ");
             } else if (item.getItemId() == R.id.bmenu_booking) {
                 replaceFragment(new Booking_Fragment());
-                setTitle("Thông tin khách hàng đăt lịch hẹn");
+                setTitle("Thông tin đặt lịch hẹn");
             } else if (item.getItemId() == R.id.bmenu_account) {
                 replaceFragment(new Account_Fragment());
                 setTitle("Thông tin khách hàng");
@@ -86,10 +86,7 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.nav_account) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Home_Fragment()).commit();
-            setTitle("Tài khoản");
-        } else if (item.getItemId() == R.id.nav_contact) {
+        if (item.getItemId() == R.id.nav_contact) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Contact_Fragment()).commit();
             setTitle("Liên hệ với cửa hàng");
         } else if (item.getItemId() == R.id.nav_map) {
@@ -120,6 +117,10 @@ public class Home_Activity extends AppCompatActivity implements NavigationView.O
                 .setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        //xóa thông tin người dùng đã lưu vết
+                        UserSession userSession = new UserSession(Home_Activity.this);
+                        userSession.clearSession();
+
                         //chuyển về trang đăng nhập
                         Intent iPageLogin = new Intent(Home_Activity.this, MainActivity.class);
                         startActivity(iPageLogin);

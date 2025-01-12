@@ -11,6 +11,11 @@
     android:background="@drawable/bg_purple"
     tools:context=".activities.SignUp_Activity">
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="95dp"
+        android:src="@drawable/logo_app2" />
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +58,7 @@
                 android:layout_height="50dp"
                 android:id="@+id/txt_sdt"
                 android:background="@drawable/bg_vientextview"
-                android:drawableLeft="@drawable/ic_khoa"
+                android:drawableLeft="@drawable/ic_phone"
                 android:drawablePadding="8dp"
                 android:hint="Số điện thoại"
                 android:padding="8dp"
@@ -66,7 +71,7 @@
                 android:layout_height="50dp"
                 android:id="@+id/txt_email"
                 android:background="@drawable/bg_vientextview"
-                android:drawableLeft="@drawable/ic_khoa"
+                android:drawableLeft="@drawable/ic_email"
                 android:drawablePadding="8dp"
                 android:hint="Email"
                 android:padding="8dp"
@@ -81,6 +86,7 @@
                 android:drawableLeft="@drawable/ic_khoa"
                 android:drawablePadding="8dp"
                 android:hint="Mật khẩu"
+                android:inputType="textPassword"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
@@ -91,7 +97,8 @@
                 android:layout_height="50dp"
                 android:id="@+id/txt_remk"
                 android:background="@drawable/bg_vientextview"
-                android:drawableLeft="@drawable/ic_khoa"
+                android:inputType="textPassword"
+                android:drawableLeft="@drawable/ic_repass"
                 android:drawablePadding="8dp"
                 android:hint="Xác nhận mật khẩu"
                 android:padding="8dp"

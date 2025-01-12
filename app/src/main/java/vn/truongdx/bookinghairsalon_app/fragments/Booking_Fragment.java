@@ -10,17 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +28,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import vn.truongdx.bookinghairsalon_app.MainActivity;
 import vn.truongdx.bookinghairsalon_app.R;
 import vn.truongdx.bookinghairsalon_app.models.entities.LichHen;
 import vn.truongdx.bookinghairsalon_app.utils.DatabaseConnection;

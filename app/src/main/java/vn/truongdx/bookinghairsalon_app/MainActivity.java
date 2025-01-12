@@ -2,6 +2,7 @@ package vn.truongdx.bookinghairsalon_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -97,11 +98,19 @@ public class MainActivity extends AppCompatActivity {
                                     String email = userSnapshot.child("email").getValue(String.class);
                                     String role = "khachhang"; // Vai trò
 
+                                    // Debug các giá trị cần kiểm tra
+                                    Log.d("LoginDebug", "dbmatkhau: " + dbmatkhau);
+                                    Log.d("LoginDebug", "name: " + name);
+                                    Log.d("LoginDebug", "email: " + email);
+                                    Log.d("LoginDebug", "role: " + role);
+                                    Log.d("LoginDebug", "sdtInput: " + sdtInput);
+                                    Log.d("LoginDebug", "mkInput: " + mkInput);
                                     if (dbmatkhau != null && dbmatkhau.equals(mkInput)) {
                                         // Lưu thông tin vào UserSession
                                         UserSession userSession = new UserSession(MainActivity.this);
                                         userSession.saveUserInfo(name, sdtInput, email, mkInput, role);
-
+                                        // Debug thông báo lưu thông tin
+                                        Log.d("LoginDebug", "User info saved successfully");
                                         // Chuyển sang Home_Activity
                                         Intent iPageHome = new Intent(MainActivity.this, Home_Activity.class);
                                         startActivity(iPageHome);

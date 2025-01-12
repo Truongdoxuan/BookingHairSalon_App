@@ -5,11 +5,11 @@ import android.content.SharedPreferences;
 
 public class UserSession {
     private static final String PREF_NAME = "USER_INFO";
-    private static final String KEY_NAME = "name"; // Tên khách hàng
-    private static final String KEY_PHONE = "phone"; // Số điện thoại
-    private static final String KEY_EMAIL = "email"; // Email
-    private static final String KEY_PASSWORD = "password"; // Mật khẩu
-    private static final String KEY_ROLE = "role"; // Vai trò
+    private static final String KEY_NAME = "name";
+    private static final String KEY_PHONE = "phone";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_PASSWORD = "password";
+    private static final String KEY_ROLE = "role";
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -31,7 +31,7 @@ public class UserSession {
 
     // Lấy tên khách hàng
     public String getName() {
-        return sharedPreferences.getString(KEY_NAME, null);
+        return sharedPreferences.getString(KEY_NAME, null); // Trả về null nếu không có giá trị
     }
 
     // Lấy số điện thoại
@@ -55,8 +55,10 @@ public class UserSession {
     }
 
     // Xóa thông tin người dùng (Đăng xuất)
-    public void clearUserInfo() {
+    public void clearSession() {
         editor.clear();
         editor.apply();
     }
 }
+
+

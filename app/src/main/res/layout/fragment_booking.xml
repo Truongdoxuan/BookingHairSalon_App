@@ -9,9 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="70dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="20dp"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
                 android:id="@+id/rd_women"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.52"
+                android:layout_weight="0.62"
                 android:text="Nữ"
                 android:textStyle="bold"/>
             <TextView
@@ -121,29 +121,29 @@
 
                 <Button
                     android:id="@+id/btn_today"
-                    android:layout_width="75dp"
+                    android:layout_width="80dp"
                     android:layout_height="75dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/format_button_day"
                     android:text="Hôm nay"
-                    android:textSize="11sp" />
+                    android:textSize="10sp" />
 
                 <Button
                     android:id="@+id/btn_tomorrow"
-                    android:layout_width="75dp"
+                    android:layout_width="80dp"
                     android:layout_height="75dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/format_button_day"
                     android:text="Ngày mai"
-                    android:textSize="11sp"/>
+                    android:textSize="10sp"/>
                 <Button
                     android:id="@+id/btn_nextday"
-                    android:layout_width="75dp"
+                    android:layout_width="80dp"
                     android:layout_height="75dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/format_button_day"
                     android:text="Ngày kia"
-                    android:textSize="11sp"/>
+                    android:textSize="10sp"/>
 
                 <Button
                     android:id="@+id/btn_otherday"
