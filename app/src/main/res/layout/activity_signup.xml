@@ -6,10 +6,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/bg_purple">
+    android:background="@drawable/bg_purple"
+    tools:context=".activities.SignUp_Activity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Đăng nhập"
+                android:text="Đăng ký"
                 android:id="@+id/txt_login"
                 android:textAlignment="center"
                 android:textSize="36dp"
@@ -38,9 +38,22 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/txt_sdt"
+                android:id="@+id/txt_ten"
                 android:background="@drawable/bg_vientextview"
                 android:drawableLeft="@drawable/ic_nguoi"
+                android:drawablePadding="8dp"
+                android:hint="Tên khách hàng"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/txt_sdt"
+                android:background="@drawable/bg_vientextview"
+                android:drawableLeft="@drawable/ic_khoa"
                 android:drawablePadding="8dp"
                 android:hint="Số điện thoại"
                 android:padding="8dp"
@@ -48,6 +61,18 @@
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:layout_marginTop="20dp"/>
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/txt_email"
+                android:background="@drawable/bg_vientextview"
+                android:drawableLeft="@drawable/ic_khoa"
+                android:drawablePadding="8dp"
+                android:hint="Email"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="20dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -61,23 +86,30 @@
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:layout_marginTop="20dp"/>
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/txt_remk"
+                android:background="@drawable/bg_vientextview"
+                android:drawableLeft="@drawable/ic_khoa"
+                android:drawablePadding="8dp"
+                android:hint="Xác nhận mật khẩu"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="20dp"/>
+
             <Button
-                android:id="@+id/btn_dangnhap"
+                android:id="@+id/btn_dangky"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/lavender"
-                android:onClick="Login"
-                android:text="Đăng nhập"
+                android:onClick="SignUp"
+                android:text="Đăng ký"
                 android:textSize="18dp"
                 app:cornerRadius="20dp" />
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/progress_bar"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:visibility="gone" />-->
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -86,10 +118,11 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginBottom="20dp"
-        android:onClick="moveSignUp"
+        android:onClick="moveLogin"
         android:padding="8dp"
-        android:text="Bạn chưa có tài khoản ? Đăng ký ngay"
+        android:text="Bạn đã có tài khoản ? Đăng nhập ngay"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp" />
+
 </LinearLayout>

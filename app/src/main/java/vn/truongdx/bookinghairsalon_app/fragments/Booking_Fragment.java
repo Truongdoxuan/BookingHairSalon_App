@@ -163,7 +163,6 @@ public class Booking_Fragment extends Fragment {
         String time = textTime.getText().toString();
         String note = ghichu.getText().toString().isEmpty() ? "Không" : ghichu.getText().toString();
         String gioitinh = gioiTinh.isChecked() ? "Nữ" : "Nam";
-
         //kiểm tra trống dữ liệu
         if (tenkh.isEmpty() || sdt.isEmpty() || date.isEmpty() || time.isEmpty()) {
             Toast.makeText(getContext(), "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
@@ -175,8 +174,7 @@ public class Booking_Fragment extends Fragment {
 
         //lấy instance của firebase
         DatabaseReference ref = DatabaseConnection.getDatabaseReference("lichhen");
-        //lấy id lớn nhất hiện tại đang có trên firebase
-        DatabaseReference currentIdRef = ref.child("currentId");
+
         //Tạo ID lịch hẹn theo ngày hiện tại
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy",Locale.getDefault());
@@ -191,7 +189,7 @@ public class Booking_Fragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     int nextId = (int) snapshot.getChildrenCount() + 1;
                     String lichhenId = "LH" +String.format("%03d",nextId);
-
+                    lichHen.setId(lichhenId);
                     dataRef.child(lichhenId).setValue(lichHen)
                             .addOnSuccessListener(aVoid -> {
                                 Toast.makeText(getContext(), "Đặt lịch hẹn thành công", Toast.LENGTH_SHORT).show();

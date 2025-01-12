@@ -1,13 +1,13 @@
 package vn.truongdx.bookinghairsalon_app.models.entities;
 
 public class LichHen {
+    private String id;
     private String tenkh;
     private String gioitinh;
     private String sdt;
     private String date;
     private String time;
     private String note;
-
     public LichHen() {
     }
 
@@ -18,6 +18,14 @@ public class LichHen {
         this.date = date;
         this.time = time;
         this.note = note;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTenkh() {
