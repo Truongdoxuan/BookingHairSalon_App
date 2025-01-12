@@ -6,7 +6,9 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,13 +20,21 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import vn.truongdx.bookinghairsalon_app.MainActivity;
 import vn.truongdx.bookinghairsalon_app.R;
 import vn.truongdx.bookinghairsalon_app.models.entities.LichHen;
+import vn.truongdx.bookinghairsalon_app.utils.DatabaseConnection;
 
 public class Booking_Fragment extends Fragment {
     //khai báo biến
@@ -164,6 +174,56 @@ public class Booking_Fragment extends Fragment {
         LichHen lichHen = new LichHen(tenkh,gioitinh,sdt,date,time,note);
 
         //lấy instance của firebase
+        DatabaseReference ref = DatabaseConnection.getDatabaseReference("lichhen");
+        //lấy id lớn nhất hiện tại đang có trên firebase
+        DatabaseReference currentIdRef = ref.child("currentId");
+        //Tạo ID lịch hẹn theo ngày hiện tại
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy",Locale.getDefault());
+            Date parsedDate = sdf.parse(date);
 
+            String lichhenDate = new SimpleDateFormat("dd_MM_yyyy", Locale.getDefault()).format(parsedDate);
+            DatabaseReference dataRef = ref.child(lichhenDate);
+
+            //lấy số lượng lịch heẹn hiện có trong ngày
+            dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    int nextId = (int) snapshot.getChildrenCount() + 1;
+                    String lichhenId = "LH" +String.format("%03d",nextId);
+
+                    dataRef.child(lichhenId).setValue(lichHen)
+                            .addOnSuccessListener(aVoid -> {
+                                Toast.makeText(getContext(), "Đặt lịch hẹn thành công", Toast.LENGTH_SHORT).show();
+                                tenKH.setText("");
+                                sdtKH.setText("");
+                                gioiTinh.setChecked(false);
+                                textDate.setText("");
+                                textTime.setText("");
+                                ghichu.setText("");
+
+                                //chuyển về fragment trang chủ
+                                Fragment homeFragment = new Home_Fragment();
+                                FragmentManager fragmentManager = getParentFragmentManager();
+                                fragmentManager.beginTransaction()
+                                        .replace(R.id.fragment_container,homeFragment)
+                                        .addToBackStack(null)
+                                        .commit(); //thực hiện chuyển đổi
+
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(getContext(), "Lỗi khi đặt lịch hẹn" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getContext(), "Lỗi kết nối đến Firebase: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(),"Lỗi khi tạo ID lịch hẹn",Toast.LENGTH_SHORT).show();
+        }
     }
 }
