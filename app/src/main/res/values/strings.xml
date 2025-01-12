@@ -2,17 +2,4 @@
     <string name="app_name">BookingHairSalon_App 2</string>
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
-    <!--Danh sách dịch vụ-->
-    <string-array name="sp_list">
-        <item>Cắt tóc</item>
-        <item>Uống tóc</item>
-        <item>Nhuộm tóc</item>
-        <item>Duỗi tóc</item>
-        <item>Gội đầu thường</item>
-        <item>Gội đầu dưỡng sinh</item>
-        <item>Nối mi</item>
-        <item>Make up</item>
-        <item>Lấy nhân mụn</item>
-        <item>Làm móng</item>
-    </string-array>
 </resources>

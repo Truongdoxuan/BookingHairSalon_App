@@ -1,5 +1,7 @@
 package vn.truongdx.bookinghairsalon_app.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -45,18 +47,71 @@ public class Home_Fragment extends Fragment {
         appointmentList = new ArrayList<>();
         adapter = new LichHen_Adapter(appointmentList, new LichHen_Adapter.OnItemClickListener() {
             @Override
-            public void onEditClick(int position) {
-                // Xử lý chỉnh sửa
-                LichHen appointment = appointmentList.get(position);
-                Toast.makeText(getContext(), "Sửa: " + appointment.getTenkh(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
             public void onDeleteClick(int position) {
-                // Xử lý xóa
-                appointmentList.remove(position);
-                adapter.notifyItemRemoved(position);
-                Toast.makeText(getContext(), "Đã xóa lịch hẹn", Toast.LENGTH_SHORT).show();
+                LichHen appointmentToDelete = appointmentList.get(position);
+                String phoneToDelete = appointmentToDelete.getSdt();
+                DatabaseReference ref = DatabaseConnection.getDatabaseReference("lichhen");
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Bạn có chắc muốn hủy lịch hẹn này không?")
+                        .setCancelable(false)
+                        .setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        ref.orderByChild("sdt").equalTo(phoneToDelete).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                boolean isDeleted = false;
+
+                                // Lặp qua tất cả các ngày
+                                for (DataSnapshot dateSnapshot : snapshot.getChildren()) {
+                                    // Lặp qua tất cả các lịch hẹn trong ngày
+                                    for (DataSnapshot appointmentSnapshot : dateSnapshot.getChildren()) {
+                                        LichHen appointment = appointmentSnapshot.getValue(LichHen.class);
+                                        if (appointment != null && phoneToDelete.equals(appointment.getSdt())) {
+                                            // Lấy key của lịch hẹn
+                                            String appointmentKey = appointmentSnapshot.getKey();
+
+                                            // Xóa lịch hẹn theo key
+                                            ref.child(dateSnapshot.getKey()).child(appointmentKey).removeValue()
+                                                    .addOnSuccessListener(avoid -> {
+                                                        appointmentList.remove(position);
+                                                        adapter.notifyItemRemoved(position);
+                                                        Toast.makeText(getContext(), "Đã xóa lịch hẹn thành công", Toast.LENGTH_SHORT).show();
+                                                    })
+                                                    .addOnFailureListener(e -> {
+                                                        Toast.makeText(getContext(), "Lỗi khi xóa lịch hẹn", Toast.LENGTH_SHORT).show();
+                                                        Log.e("Home_Fragment", "Error deleting: " + e.getMessage());
+                                                    });
+                                            isDeleted = true;
+                                            break;
+                                        }
+                                    }
+                                    if (isDeleted) break;
+                                }
+
+                                if (!isDeleted) {
+                                    Toast.makeText(getContext(), "Không tìm thấy lịch hẹn cần xóa", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(getContext(), "Lỗi khi tải dữ liệu", Toast.LENGTH_SHORT).show();
+                                Log.e("Home_Fragment", "DatabaseError: " + error.getMessage());
+                            }
+                        });
+                            }
+                        })
+                        .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+
+                AlertDialog alertLogOut = builder.create();
+                alertLogOut.show();
             }
         });
 
@@ -66,8 +121,7 @@ public class Home_Fragment extends Fragment {
         // Lấy số điện thoại tài khoản hiện tại
         UserSession userSession = new UserSession(requireContext());
         String currentSdt = userSession.getPhone();
-        Log.d("Home_Fragment", "Current Phone: '" + currentSdt + "'");
-        Log.d("Home_Fragment", "Current Phone: " + currentSdt); // Log số điện thoại hiện tại
+        Log.d("Home_Fragment", "Current Phone: " + currentSdt);
 
         // Kết nối đến Firebase
         DatabaseReference ref = DatabaseConnection.getDatabaseReference("lichhen");
@@ -98,6 +152,7 @@ public class Home_Fragment extends Fragment {
                 Log.e("Home_Fragment", "DatabaseError: " + error.getMessage());
             }
         });
+
         return view;
     }
 }

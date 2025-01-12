@@ -10,7 +10,7 @@
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tên: Nguyễn Văn A"
+        android:text="Tên khách hàng: Nguyễn Văn A"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -25,7 +25,7 @@
         android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ngày: 21/12/2024"
+        android:text="Ngày hẹn: 21/12/2024"
         android:textSize="14sp" />
 
     <TextView
@@ -47,19 +47,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="end">
-
-        <Button
-            android:id="@+id/btnEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sửa"
-            android:textSize="14sp" />
+        
 
         <Button
             android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Xóa"
+            android:text="Xóa lịch hẹn"
             android:textSize="14sp"
             android:layout_marginLeft="8dp" />
     </LinearLayout>

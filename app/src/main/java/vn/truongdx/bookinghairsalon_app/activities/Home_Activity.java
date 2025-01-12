@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -27,15 +29,18 @@ import vn.truongdx.bookinghairsalon_app.fragments.Contact_Fragment;
 import vn.truongdx.bookinghairsalon_app.fragments.Home_Fragment;
 import vn.truongdx.bookinghairsalon_app.fragments.Map_Fragment;
 import vn.truongdx.bookinghairsalon_app.fragments.MenuSalon_Fragment;
+import vn.truongdx.bookinghairsalon_app.utils.UserSession;
 
 
 public class Home_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         Toolbar toolbar = findViewById(R.id.toolbar);

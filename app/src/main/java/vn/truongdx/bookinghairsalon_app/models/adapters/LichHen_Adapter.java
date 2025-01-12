@@ -20,7 +20,6 @@ public class LichHen_Adapter extends RecyclerView.Adapter<LichHen_Adapter.Appoin
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onEditClick(int position);
         void onDeleteClick(int position);
     }
 
@@ -48,7 +47,6 @@ public class LichHen_Adapter extends RecyclerView.Adapter<LichHen_Adapter.Appoin
         holder.tvNotes.setText(lichHen.getNote() != null ? "Ghi chú: " + lichHen.getNote() : "Ghi chú: N/A");
 
         // Xử lý sự kiện click cho các nút
-        holder.btnEdit.setOnClickListener(v -> listener.onEditClick(position));
         holder.btnDelete.setOnClickListener(v -> listener.onDeleteClick(position));
     }
 
@@ -62,7 +60,7 @@ public class LichHen_Adapter extends RecyclerView.Adapter<LichHen_Adapter.Appoin
     public static class AppointmentViewHolder extends RecyclerView.ViewHolder {
         // Khai báo các View bên trong item
         TextView tvName, tvPhone, tvDate, tvTime, tvNotes;
-        Button btnEdit, btnDelete;
+        Button btnDelete;
 
         public AppointmentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,7 +69,6 @@ public class LichHen_Adapter extends RecyclerView.Adapter<LichHen_Adapter.Appoin
             tvDate = itemView.findViewById(R.id.tvDate);
             tvTime = itemView.findViewById(R.id.tvTime);
             tvNotes = itemView.findViewById(R.id.tvNotes);
-            btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
         }
     }
